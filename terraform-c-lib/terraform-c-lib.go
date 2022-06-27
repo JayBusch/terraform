@@ -18,12 +18,14 @@ func LoadModule(modulePath string) (rc int, config_c *C.char, errstr *C.char) {
 	loader, loaderErr := configload.NewLoader(config)
 	if loaderErr != nil {
 		log.Printf("Error creating loader: %s", loaderErr )
+		return -1, nil, C.CString(fmt.Sprintf("%v", loaderErr))
 	}
 
 
 	loadedConfig, configErr := loader.LoadConfig(modulePathClean)
 	if configErr != nil {
 		log.Printf("Error loading config: %s", configErr )
+		return -2, nil, C.CString(fmt.Sprintf("%v", configErr))
 	}
 	log.Printf("Module is %#v", loadedConfig.Module)
 	return 0, C.CString(fmt.Sprintf("%v", loadedConfig.Module)), nil
