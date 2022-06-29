@@ -33,11 +33,6 @@ func LoadModule(modulePath string) (rc int, config_c *C.char, errstr *C.char) {
 
 func main() {
 
-	rc, config, err := LoadModule("../terraform-c-lib/test_tf_files/")
-
-	log.Printf("rc: %d", rc)
-	log.Printf("config: %s", config)
-	log.Printf("err: %v", err)
 
 }
 
